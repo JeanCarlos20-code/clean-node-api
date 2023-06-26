@@ -1,7 +1,8 @@
 module.exports = {
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
-  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts',
+    '!<rootDir>/src/main/**'],
   coverageDirectory: 'coverage',
   transform: {
     '^.+\\.ts?$': 'ts-jest',
