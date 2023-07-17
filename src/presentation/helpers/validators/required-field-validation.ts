@@ -4,8 +4,8 @@ import { Validation } from "./validation";
 export class RequiredFieldValidation implements Validation {
   private readonly fieldName: string
 
-  constructor(fieldNmae: string) {
-    this.fieldName = fieldNmae
+  constructor(fieldName: string) {
+    this.fieldName = fieldName
   }
 
   validate(input: any): Error {
