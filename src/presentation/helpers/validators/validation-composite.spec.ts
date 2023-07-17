@@ -39,4 +39,10 @@ describe('Validation Composite', () => {
     const error = sut.validate({ field: 'any_value' })
     expect(error).toEqual(new Error())
   })
+
+  test('Should not return the first error if more then one validation fails', () => {
+    const { sut } = makeSut()
+    const error = sut.validate({ field: 'any_value' })
+    expect(error).toBeFalsy()
+  })
 })
