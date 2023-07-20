@@ -1,7 +1,7 @@
-import { AuthenticationModel } from "../../../domain/usecases/authentication"
-import { LoadAccountByEmailRepository } from "../../protocols/load-account-by-email-repository"
-import { AccountModel } from "../add-account/db-add-account-protocols"
-import { DbAuthentication } from "./db-authentication"
+import { AuthenticationModel } from '../../../domain/usecases/authentication'
+import { LoadAccountByEmailRepository } from '../../protocols/db/load-account-by-email-repository'
+import { AccountModel } from '../add-account/db-add-account-protocols'
+import { DbAuthentication } from './db-authentication'
 
 const makeFakeAccount = (): AccountModel => ({
   id: 'any_id',
@@ -16,10 +16,10 @@ const makeFakeAuthentication = (): AuthenticationModel => ({
 })
 
 const makeLoadAccountByEmailRepository = (): LoadAccountByEmailRepository => {
-class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
-      async load(email: string): Promise<AccountModel> {
-        return new Promise(resolve => resolve(makeFakeAccount()))
-      }
+  class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
+    async load (email: string): Promise<AccountModel> {
+      return await new Promise(resolve => resolve(makeFakeAccount()))
+    }
   }
   return new LoadAccountByEmailRepositoryStub()
 }
