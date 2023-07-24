@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/consistent-type-imports */
+import { EmailValidator } from '../../../presentation/protocols/IEmailValidator'
 import validator from 'validator'
-import { EmailValidator } from '../presentation/protocols/IEmailValidator'
 
 export class EmailValidatorAdapter implements EmailValidator {
   isValid (email: string): boolean {
