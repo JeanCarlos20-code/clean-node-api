@@ -6,6 +6,7 @@
     "node": "18.x",
     "npm": "9.x"
   },
+  "engineStrict" : true,
   "scripts": {
     "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc",
@@ -16,7 +17,8 @@
     "test:unit": "npm test -- --watchAll -c jest-unit-config.js",
     "test:integration": "npm test -- --watchAll -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage"
+    "test:ci": "npm test -- --coverage",
+    "check": "npm-check -s -u"
   },
   "author": "Jean Carlos",
   "license": "ISC",
