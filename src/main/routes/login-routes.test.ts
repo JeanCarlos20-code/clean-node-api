@@ -4,7 +4,6 @@ import { MongoHelper } from '../../infra/db/mongodb/helpers/mongo-helper'
 import { Collection } from 'mongodb'
 import { hash } from 'bcrypt'
 
-
 let accountCollection: Collection
 describe('Login Routes', () => {
   beforeAll(async () => {
@@ -22,43 +21,43 @@ describe('Login Routes', () => {
 
   describe('POST /signup', () => {
     test('Should return 200 on signup', async () => {
-    await request(app)
-      .post('/api/signup')
-      .send({
-        name: 'Jean',
-        email: 'jeancarlos@gmail.com',
-        password: '123',
-        passwordConfirmation: '123'
-      })
-      .expect(200)
+      await request(app)
+        .post('/api/signup')
+        .send({
+          name: 'Jean',
+          email: 'jeancarlos@gmail.com',
+          password: '123',
+          passwordConfirmation: '123'
+        })
+        .expect(200)
     })
   })
 
   describe('POST /login', () => {
     test('Should return 200 on login', async () => {
-    const password = await hash('123', 12)
-    await accountCollection.insertOne({
-      name: 'Jean',
-      email: 'jeancarlos@gmail.com',
-      password,
-    })
-    await request(app)
-      .post('/api/login')
-      .send({
+      const password = await hash('123', 12)
+      await accountCollection.insertOne({
+        name: 'Jean',
         email: 'jeancarlos@gmail.com',
-        password: '123',
+        password
       })
-      .expect(200)
+      await request(app)
+        .post('/api/login')
+        .send({
+          email: 'jeancarlos@gmail.com',
+          password: '123'
+        })
+        .expect(200)
     })
 
     test('Should return 401 on login', async () => {
-    await request(app)
-      .post('/api/login')
-      .send({
-        email: 'jeancarlos@gmail.com',
-        password: '123',
-      })
-      .expect(401)
+      await request(app)
+        .post('/api/login')
+        .send({
+          email: 'jeancarlos@gmail.com',
+          password: '123'
+        })
+        .expect(401)
     })
   })
 })

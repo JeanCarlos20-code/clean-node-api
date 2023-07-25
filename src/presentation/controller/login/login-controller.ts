@@ -1,9 +1,9 @@
-import { badRequest, serverError, unauthorized, ok } from "../../helpers/http/http-helper";
-import { Controller, HttpRequest, HttpResponse, Validation, Authentication } from "./login-controller-protocols";
+import { badRequest, serverError, unauthorized, ok } from '../../helpers/http/http-helper'
+import { Controller, HttpRequest, HttpResponse, Validation, Authentication } from './login-controller-protocols'
 
-export class LoginController implements Controller{
-  constructor(private readonly authentication: Authentication, private readonly validation: Validation) {}
-  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+export class LoginController implements Controller {
+  constructor (private readonly authentication: Authentication, private readonly validation: Validation) { }
+  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const error = this.validation.validate(httpRequest.body)
       if (error) {
@@ -15,8 +15,7 @@ export class LoginController implements Controller{
         return unauthorized()
       }
       return ok({ accessToken })
-    }
-    catch (error) {
+    } catch (error) {
       return serverError(error)
     }
   }
